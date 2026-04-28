@@ -13,9 +13,12 @@ class FakultasController extends Controller
     public function index()
     {
         //akses model fakultas
-        $result = Fakultas::all();
-        dd($result);
-        //kirim data fakultas ke view
+        $result = fakultas::all();
+        // dd($result);
+        //kirim data fakultas ke view menggunakan with
+        // return view(fakultas.index)->with('fakultas', $result);
+        //atau compact
+        return view('fakultas.index', compact('result'));
     }
 
     /**
