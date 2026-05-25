@@ -25,8 +25,6 @@
                     <div class='text-danger'>{{ $message }}</div>
                 @enderror
             </div>
-                
             <button type="submit" class="btn btn-primary mt-3">Simpan</button>
         </form>
-
 @endsection
