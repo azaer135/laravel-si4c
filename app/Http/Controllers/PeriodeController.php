@@ -13,7 +13,7 @@ class PeriodeController extends Controller
     public function index()
     {
         //akses model periode
-        $result = periode::all();
+        $result = Periode::all();
         //select from periode
         //dd($result);
         //kirim data periode ke view
@@ -25,7 +25,7 @@ class PeriodeController extends Controller
      */
     public function create()
     {
-        //
+       return view('periode.create');
     }
 
     /**
@@ -65,6 +65,9 @@ class PeriodeController extends Controller
      */
     public function destroy(Periode $periode)
     {
-        //
+        $periode = Periode::find($periode, 'id');
+        // dd($periode);
+        $periode->delete(); // delete from periode where id = $periode
+        return redirect()->route('periode.index')->with('success', 'Data periode berhasil dihapus'); // redirect ke halaman index periode
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
-
 
 class ProdiController extends Controller
 {
@@ -12,17 +12,18 @@ class ProdiController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $prodis = Prodi::with('fakultas')->get();
-    return view('prodi.index', compact('prodis'));
-}
+    {
+        $prodis = Prodi::with('fakultas')->get();
+        return view('prodi.index', compact('prodis'));
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $fakultas = Fakultas::all(); // untuk list dropdown fakultas
+        return view('prodi.create', compact('fakultas'));
     }
 
     /**
@@ -30,7 +31,19 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validasi data
+        $input = $request->validate([
+            'nama_prodi' => 'required|unique:prodis',
+            'singkatan' => 'required|max:2',
+            'kaprodi' => 'required',
+            'fakultas_id' => 'required'
+        ]);
+
+        // simpan data ke tabel prodi
+        Prodi::create($input);
+
+        // redirect ke halaman index prodi
+        return redirect()->route('prodi.index');
     }
 
     /**
@@ -62,6 +75,7 @@ class ProdiController extends Controller
      */
     public function destroy(Prodi $prodi)
     {
-        //
+        $prodi->delete(); // delete from prodi where id = $prodi
+        return redirect()->route('prodi.index')->with('success', 'Data program studi berhasil dihapus'); // redirect ke halaman index prodi
     }
 }

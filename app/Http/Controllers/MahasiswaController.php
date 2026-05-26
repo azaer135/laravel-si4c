@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\mahasiswa;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -13,6 +14,8 @@ class MahasiswaController extends Controller
     public function index()
     {
         //
+        $mahasiswa = Mahasiswa::with('prodi')->get();
+        return view('mahasiswa.index', compact('mahasiswa'));
     }
 
     /**
@@ -21,6 +24,8 @@ class MahasiswaController extends Controller
     public function create()
     {
         //
+        $prodi = Prodi::all();
+        return view('mahasiswa.create', compact('prodi'));
     }
 
     /**
