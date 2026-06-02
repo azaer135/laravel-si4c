@@ -25,7 +25,7 @@
                 <td>{{ $prodi->nama_prodi }}</td>
                 <td>{{ $prodi->singkatan }}</td>
                 <td>{{ $prodi->kaprodi }}</td>
-                <td>{{ $prodi->fakultas->nama_fakultas ?? '-' }}</td>
+                <td>{{ $prodi->fakultas->nama ?? '-' }}</td>
                 <td>
                     <form method="POST" action="{{ route('prodi.destroy', $prodi->id) }}">
                         @csrf

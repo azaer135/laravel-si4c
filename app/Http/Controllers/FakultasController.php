@@ -32,7 +32,7 @@ class FakultasController extends Controller
     {
         // validasi data
         $input = $request->validate([
-            'nama_fakultas' => 'required|unique:fakultas',
+            'nama' => 'required|unique:fakultas',
             'singkatan' => 'required',
             'dekan' => 'required'
         ]);
@@ -69,7 +69,7 @@ class FakultasController extends Controller
         // dd($fakultas);
         // validasi data
         $input = $request->validate([
-            'nama_fakultas' => 'required|unique:fakultas,nama_fakultas,' . $fakultas->id, // validasi nama_fakultas harus unik di tabel fakultas kecuali data yang sedang diupdate
+            'nama' => 'required|unique:fakultas,nama,' . $fakultas->id, // validasi nama harus unik di tabel fakultas kecuali data yang sedang diupdate
             'singkatan' => 'required',
             'dekan' => 'required'
         ]);

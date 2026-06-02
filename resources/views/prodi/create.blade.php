@@ -30,7 +30,7 @@
             <select name="fakultas_id" class="form-control">
                 <option value="">-- Pilih Fakultas --</option>
                 @foreach($fakultas as $f)
-                    <option value="{{ $f->id }}" {{ old('fakultas_id') == $f->id ? 'selected' : '' }}>{{ $f->nama_fakultas }}</option>
+                    <option value="{{ $f->id }}" {{ old('fakultas_id') == $f->id ? 'selected' : '' }}>{{ $f->nama }}</option>
                 @endforeach
             </select>
             @error('fakultas_id')
